@@ -1,0 +1,21 @@
+{
+  "name": "eutera",
+  "version": "1.0.0",
+  "description": "",
+  "main": "eutera.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Andy Alexandru",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.4.1",
+    "ffmpeg": "^0.0.4",
+    "fluent-ffmpeg": "^2.1.2",
+    "imageapi.js": "^1.0.19",
+    "node-fetch": "^2.6.1",
+    "opusscript": "^0.0.7",
+    "request": "^2.88.2",
+    "ytdl-core": "^4.0.3"
+  }
+}
