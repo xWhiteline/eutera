@@ -3,7 +3,7 @@ const request = require('request');
 const ytdl = require('ytdl-core');
 const fs = require('fs');
 
-const token = 'NzcyOTQ0NjQ2MTk1NTExMjk3.X6CCzA.Jz3Yeda7e9uFkGvDFjdTsEECIgI';
+const token = '';
 const client = new Discord.Client();
 
 /* Set the bot prefix*/
