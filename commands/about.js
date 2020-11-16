@@ -1,8 +1,8 @@
+const config = require("../config.json");
 const Discord = require('discord.js');
-const main = require('../eutera.js');
 
-var version = '0.1';
-var build = '014_H220';
+let version = config.version;
+let build = config.build;
 
 const info_cmd = '!about bot'
 const basic_cmd = '!memes. !play, !ping, !pool'

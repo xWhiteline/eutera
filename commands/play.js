@@ -1,47 +1,38 @@
 const Discord = require('discord.js');
+const {Player} = require('discord-player');
 const ytdl = require('ytdl-core');
-var servers = {};
+
+const client = new Discord.Client();
+
+const player = new Player(client);
+client.player = player;
 
 module.exports = {
     name: 'play',
     description: '',
     category: 'music',
-    execute(message, args) {
-        function play(connection, message) {
-            var server = servers[message.guild.id];
+    async execute(message, args) {
+        const voiceChannel = message.member.voice.channel
+        if(!voiceChannel) return message.channel.send("You need to be in a voice channel to play music")
 
-            server.dispatcher = connection.play(ytdl(server.queue[0], { filter: "audioonly" }));
-            server.queue.shift();
+        const permissions = voiceChannel.permissionsFor(message.client.user)
+        if(!permissions.has('CONNECT')) return message.channel.send("I don't have permissions to connect to the voice channel")
+        if(!permissions.has('SPEAK')) return message.channel.send("I don't have permissions to speak in the channel")
 
-            server.dispatcher.on("end", function () {
-                if (server.queue[0]) {
-                    play(connection, message);
-                } else {
-                    connection.disconnect();
-                }
-            });
+        try{
+            var connection = await voiceChannel.join()
+        } catch (error) {
+            console.log("There was an error connecting to the voice channel: ${error}")
+            return message.channel.send("There was an error connecting to the voice channel: ${error}")
         }
 
-        if (!args[0]) {
-            message.reply("you need to provide a link!");
-            return;
-        }
-
-        if (!message.member.voice.channel) {
-            message.reply("you must be in a channel to play music!");
-            return;
-        }
-
-        if (!servers[message.guild.id]) servers[message.guild.id] = {
-            queue: []
-        }
-
-        var server = servers[message.guild.id];
-
-        server.queue.push(args[0]);
-
-        if (!message.member.voice.connection) message.member.voice.channel.join().then(function (connection) {
-            play(connection, message);
+        const dispatcher = connection.play(ytdl(args[0]))
+        .on('finish', () => {
+            voiceChannel.leave()
         })
+        .on('error', error => {
+            console.log(error)
+        })
+        dispatcher.setVolumeLogarithmic(5 / 5)
     }
 }

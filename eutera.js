@@ -1,3 +1,5 @@
+/* Core */
+const config = require("./config.json");
 const Discord = require('discord.js');
 const request = require('request');
 const ytdl = require('ytdl-core');
@@ -5,11 +7,13 @@ const fs = require('fs');
 
 const client = new Discord.Client();
 
-const token = '';
-var prefix = '~';
+/* Music */
+const {Player} = require('discord-player');
+const player = new Player(client);
+client.player = player;
 
-var version = '0.1';
-var build = '014_H220';
+let version = config.version;
+let build = config.build;
 
 client.commands = new Discord.Collection();
 
@@ -20,12 +24,12 @@ for (const file of commandFiles) {
     client.commands.set(command.name, command);
 }
 
-client.once('ready', () => { console.log('Eutera ' + version + ' ' + build + ' is online!'); })
+client.once('ready', async () => { console.log('Eutera ' + version + ' ' + build + ' is online!'); })
 
-client.on('message', message => {
-    if (!message.content.startsWith(prefix) || message.author.bot) return;
+client.on('message', async message => {
+    if (!message.content.startsWith(config.prefix) || message.author.bot) return;
 
-    const args = message.content.slice(prefix.length).split(/ +/);
+    const args = message.content.slice(config.prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
 
     if (command === 'about') {
@@ -46,10 +50,16 @@ client.on('message', message => {
     else if (command === 'pool') {
         client.commands.get('pool').execute(message, args);
     }
+    else if (command === 'shutdown') {
+        client.commands.get('shutdown').execute(message, args);
+    }
     else if (command === 'play') {
         client.commands.get('play').execute(message, args);
+    }
+    else if(command === 'stop') {
+        client.commands.get('stop').execute(message, args);
     }
 });
 
 /* Login the bot */
-client.login(token);
+client.login(config.token);
