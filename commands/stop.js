@@ -1,19 +1,22 @@
 const Discord = require('discord.js');
-const {Player} = require('discord-player');
 const ytdl = require('ytdl-core');
 
-const client = new Discord.Client();
+const play = require('./play.js');
 
-const player = new Player(client);
-client.player = player;
+const client = new Discord.Client();
 
 module.exports = {
     name: 'stop',
     description: '',
     category: 'music',
     async execute(message, args) {
+        let serverQueue = play.serverQueue;
+
         if(!message.member.voice.channel) return message.channel.send("You need to be in a voice channel to stop the music!")
-        message.member.voice.channel.leave()
+        if(!serverQueue) return message.channel.send("There is nothing to play!")
+        serverQueue.songs = []
+        serverQueue.connecion.dispatcher.end()
+        message.channel.send("I have stoped the music for you!")
         return undefined
     }
 }
