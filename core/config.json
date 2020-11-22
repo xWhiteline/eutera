@@ -2,8 +2,9 @@
     "activity": "--help",
     "prefix": "--",
 
-    "build": "060_H220",
-    "version": "0.60.2",
+    "build": "061_H220",
+    "version": "0.61.0",
+    "core_version": "12.5.0",
 
     "token": "DISCORD_TOKEN",
     "GOOGLE_API_KEY": "GOOGLE_API_KEY",

@@ -1,5 +1,6 @@
 const config = require('../core/config.json');
 
+let core_version = config.core_version;
 let version = config.version;
 let build = config.build;
 
@@ -8,7 +9,8 @@ module.exports = {
     category: 'Debug',
     description: 'This command displays the status of the bot!',
     execute (message, args) {
-        message.channel.send('Eutera ' + `(\`${version}\`)` + ' build ' + `(\`${build}\`)` + ' runs on Ubuntu.');
-        message.channel.send(`This command was requested by (\`${message.author}\`)`).catch(console.error);
+        message.channel.send('Eutera is using Discord.JS version: ' + `(\`${core_version}\`)`);
+        message.channel.send('Eutera ' + `(\`${version}\`)` + ' build ' + `(\`${build}\`)` + ' runs on Heroku.');
+        message.channel.send("This command was requested by " + `(\`${message.author.tag}\`)`).catch(console.error);
     }
 };
