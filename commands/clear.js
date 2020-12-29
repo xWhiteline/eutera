@@ -1,13 +1,18 @@
-﻿module.exports = {
+module.exports = {
     name: 'clear',
-    description: '',
-    category: 'maintenance',
-    execute(message, args) {
+    category: 'Maintenance',
+    async execute(message, args) {
         if (message.member.permissions.has("ADMINISTRATOR")) {
-            if (!args[0])
-                return message.reply('ERR0R: A second argument has not been defined!')
+            if (!args[0]) return message.reply('ERR0R: Please enter the amount of messages that you wish to clear!');
+            if(isNaN(args[0])) return message.reply('ERR0R: Please enter a real number!');
+
+            if(args[0] > 100) return message.reply('ERR0R: You can\'t delete more than 100 messages!');
+            if(args[0] < 1) return message.reply('ERR0R: You need to delete at least one message!');
+
+            await message.channel.messages.fetch({limit: args[0]}).then(messages => {
                 message.channel.bulkDelete(args[0]);
-                console.log(args[1] + ' messages deleted ' + message.author.username);
+                console.log(args[0] + ' messages deleted by: ' + message.author.username);
+            });                
         } else {
             message.channel.send('ERR0R: The bot does not have the Administrator permission');
         }

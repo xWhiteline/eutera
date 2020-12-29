@@ -4,26 +4,19 @@
   "description": "",
   "main": "eutera.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "preinstall": "npm install pm2 -g",
+    "start": "pm2-runtime start ecosystem.config.js --env production"
   },
-  "author": "Andy Alexandru",
+  "author": "conclaveSoftware",
   "license": "ISC",
   "dependencies": {
-    "@babel/core": "^7.12.3",
-    "@babel/preset-env": "^7.12.1",
-    "discord-player": "^3.0.2",
-    "discord-ytdl-core": "^4.1.5",
-    "discord.js": "^12.4.1",
-    "ffmpeg": "^0.0.4",
-    "fluent-ffmpeg": "^2.1.2",
-    "imageapi.js": "^1.0.19",
+    "discord.js": "^12.5.1",
+    "ffmpeg-static": "^4.2.7",
+    "lyrics-finder": "^21.4.0",
     "node-fetch": "^2.6.1",
-    "opusscript": "^0.0.7",
-    "quick.db": "^7.1.3",
-    "request": "^2.88.2",
+    "opusscript": "0.0.7",
     "simple-youtube-api": "^5.2.1",
-    "spotify-url-info": "^2.2.0",
-    "ytdl-core": "^4.0.3",
-    "ytpl": "^1.0.1"
+    "string-progressbar": "^1.0.1",
+    "ytdl-core": "^4.2.1"
   }
 }

@@ -1,12 +1,10 @@
 const Discord = require('discord.js');
 const fetch = require('node-fetch');
-const API = require('imageapi.js');
 
 module.exports = {
-    name: 'memes',
-    description: '',
-    category: 'entertainment',
-    execute(message, args) {
+    name: 'meme',
+    category: 'Entertainment',
+    execute (message, args) {
         fetch('https://meme-api.herokuapp.com/gimme')
             .then(res => res.json())
             .then(json => {
@@ -17,4 +15,4 @@ module.exports = {
                 message.channel.send(embed);
             });
     }
-}
+};

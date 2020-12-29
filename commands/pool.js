@@ -1,24 +1,16 @@
-﻿const Discord = require('discord.js');
-
 module.exports = {
     name: 'pool',
-    description: '',
-    category: 'entertainment',
-    execute(message, args) {
-        const Embed = new Discord.MessageEmbed()
-            .setColor(0xFFC300)
-            .setTitle('Initiate Pool')
-            .setDescription('');
+    usage: '<question>',
+    category: 'Entertainment',
+    execute (message, args) {
+        if (!args[0]) {message.channel.send('ERR0R: Please ask a question!')};
 
-        if (!args[0]) {
-            message.channel.send(Embed);
-        }
+        let messageArgs = args.slice(0).join(" ");
 
-        let msgArgs = args.slice(0).join(" ");
-
-        message.channel.send(':notepad_spiral: ' + '**' + msgArgs + '**').then(messageReaction => {
-            messageReaction.react("👍");
-            messageReaction.react("👎");
-        });
+        if (args[0]) {
+            message.channel.send(':notepad_spiral: ' + '**' + messageArgs + '**').then(messageReaction => {
+                messageReaction.react("👍");
+                messageReaction.react("👎")});
+        };
     }
-}
+};
