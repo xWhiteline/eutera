@@ -13,7 +13,7 @@ module.exports = {
     category: 'Music',
     async execute(message, args) {
         const voiceChannel = message.member.voice.channel;
-        if(!voiceChannel) return message.channel.send("You need to be in a voice channel to play music");
+        if(!voiceChannel) return message.reply("you need to be in a voice channel to play music");
         const permissions = voiceChannel.permissionsFor(message.client.user);
         if(!permissions.has('CONNECT')) return message.channel.send("I don't have permissions to connect to the voice channel");
         if(!permissions.has('SPEAK')) return message.channel.send("I don't have permissions to speak in the channel");
@@ -25,7 +25,7 @@ module.exports = {
                 .reply(`Usage: ${message.client.prefix}play <name>`)
                 .catch(console.error);
         if (serverQueue && voiceChannel !== message.guild.me.voice.channel)
-            return message.reply(`You must be in the same channel as ${message.client.user}`).catch(console.error);
+            return message.reply(`you must be in the same channel as ${message.client.user}`).catch(console.error);
 
         const search = args.join(" ");
         const pattern = /^https?:\/\/(www.youtube.com|youtube.com)\/playlist(.*)$/;
@@ -52,7 +52,7 @@ module.exports = {
             videos = await playlist.getVideos(MAX_PLAYLIST_SIZE || 10, { part: "snippet" });
         } catch (error) {
             console.error(error);
-            return message.reply("Playlist not found").catch(console.error);
+            return message.reply("I could not find the playlist!").catch(console.error);
         };
     
         } else if (scdl.isValidUrl(args[0])) {
@@ -121,7 +121,7 @@ module.exports = {
                     console.log(error)
                     });
                     
-                    dispatcher.setVolumeLogarithmic(5 / 5);
+                    dispatcher.setVolumeLogarithmic(1 / 10);
                     message.channel.send(`Start playing **${song.title}**`);
         };
 
@@ -133,7 +133,7 @@ module.exports = {
             console.error(error);
             message.client.queue.delete(message.guild.id);
             await voiceChannel.leave();
-            return message.channel.send(`Could not join the channel: ${error.message}`).catch(console.error);
+            return message.reply(`I could not join the channel: ${error.message}`).catch(console.error);
         }
     }
 }};

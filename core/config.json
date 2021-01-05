@@ -2,8 +2,8 @@
     "activity": "--help",
     "prefix": "--",
 
-    "build": "101_M1220",
-    "version": "1.0.1",
+    "build": "152_21H1",
+    "version": "1.5.2",
     "core_version": "12.5.1",
     "ytdl_version": "4.2.1",
     "dev_feedback": "https://xwhiteline.github.io/pages/feedback.html",

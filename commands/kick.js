@@ -10,15 +10,15 @@ module.exports = {
                 const member = message.guild.member(user);
 
                 if(member){
-                    member.kick('You were kicked for trolling!')
+                    member.kick('kick_reason')
                         .then(() => console.log(`${message.author.tag} kicked ${user.tag} from ${message.guild.name}`))
                         .catch(console.error);
                     message.reply(`successfully kicked ${user.tag}`);
                 } else {
-                    message.reply("ERR0R: The user provided is not part of this server!")
+                    message.reply(`the provided user is not a member of ${message.guild.name}!`)
                 } 
             } else {
-                    message.channel.send('ERR0R: You have not provided a user!');
+                    message.reply('you have not provided a user!');
             }
         }
     }

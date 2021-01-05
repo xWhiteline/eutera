@@ -8,7 +8,7 @@ module.exports = {
             if (args[0]){
                 message.guild.fetchBans()
                     .then(bans => {
-                        if(bans.size == 0) return message.reply("this server does not have anyone banned.");
+                        if(bans.size == 0) return message.reply(`${message.guild.name} does not have anyone banned!`);
                         let bUser = bans.find(b => b.user.id == userID);
                         if(!bUser) return message.reply("the userID that you provided is not banned. ");
 

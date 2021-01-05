@@ -6,7 +6,7 @@ module.exports = {
     category: 'Music',
     execute (message) {
         const serverQueue = message.client.queue.get(message.guild.id);
-        if(!serverQueue) return message.channel.send("There is nothing playing");
+        if(!serverQueue) return message.reply("there is nothing playing");
 
         const song = serverQueue.songs[0];
         const seek = (serverQueue.connection.dispatcher.streamTime - serverQueue.connection.dispatcher.pausedTime) / 1000;

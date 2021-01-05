@@ -9,9 +9,9 @@ module.exports = {
                 message.guild.members.ban(user.id)
                     .then(() => console.log(`${message.author.tag} banned ${user.tag} from ${message.guild.name}`))
                     .catch(console.error);
-                message.reply(`successfully banned ${user.tag}`);
+                message.reply(`${message.author.tag} banned ${user.tag} from ${message.guild.name}`);
             } else {
-                message.reply('ERR0R: You have not provided a user!');
+                message.reply('a user has not been provided!');
             }
         }
     }

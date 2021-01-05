@@ -13,12 +13,12 @@ module.exports = {
         // voiceChannel related conditions
         const voiceChannel = message.member.voice.channel;
         if(!voiceChannel) 
-            return message.channel.send(`ERR0R: You need to be in a voice channel to play music`).catch(console.error);
+            return message.reply(`you need to be in a voice channel to play music`).catch(console.error);
         
         // queue related conditions
         const serverQueue = message.client.queue.get(message.guild.id);
         if (serverQueue && voiceChannel !== message.guild.me.voice.channel) 
-            return message.reply(`ERR0R: You must be in the same channel as ${message.client.user}`).catch(console.error);
+            return message.reply(`you must be in the same channel as ${message.client.user}`).catch(console.error);
                 
         // permission related conditions
         const permissions = voiceChannel.permissionsFor(message.client.user);
@@ -109,7 +109,7 @@ module.exports = {
                     queue.songs.shift();
                 });
                         
-            dispatcher.setVolumeLogarithmic(5 / 5);
+            dispatcher.setVolumeLogarithmic(1 / 10);
             message.channel.send(`Start playing **${song.title}**`);
         };
         
@@ -118,10 +118,10 @@ module.exports = {
             await queueConstruct.connection.voice.setSelfDeaf(true);
             play(queueConstruct.songs[0], message);
         } catch(error) {
-            console.error(`ERR0R: I could not join the voice channel: ${error}`);
+            console.error(`I could not join the voice channel: ${error}`);
             message.client.queue.delete(message.guild.id);
             await voiceChannel.leave();
-            return message.channel.send(`ERR0R: I could not join the voice channel: ${error}`);
+            return message.reply(`I could not join the voice channel: ${error}`);
         };
     }
 };

@@ -3,10 +3,10 @@ module.exports = {
     category: 'Music',
     execute (message, args) {
         const voiceChannel = message.member.voice.channel;
-        if(!voiceChannel) return message.channel.send("You need to be in a voice channel to skip the music!");
+        if(!voiceChannel) return message.reply("you need to be in a voice channel to skip the music!");
         const serverQueue = message.client.queue.get(message.guild.id);
-        if(!serverQueue) return message.channel.send("There is nothing playing!");
-        if(serverQueue.playing) return message.channel.send("The music is already playing!");
+        if(!serverQueue) return message.reply("there is nothing playing!");
+        if(serverQueue.playing) return message.reply("the music is already playing!");
 
         serverQueue.playing = true;
         serverQueue.connection.dispatcher.resume();

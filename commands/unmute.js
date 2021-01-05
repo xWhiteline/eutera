@@ -4,24 +4,24 @@ module.exports = {
     name: 'unmute',
     execute (message, args) {
         if(!message.member.hasPermission(['KICK_MEMBERS', 'BAN_MEMBERS'])) {
-            message.channel.send("ERR0R: You do not have the permission to mute users!");
+            message.channel.send("I need the KICK_MEMBERS & BAN_MEMBERS permissions!");
         } else {
             let user = message.mentions.members.first();
 
             if(user) {
                 if(user.hasPermission(['KICK_MEMBERS', 'BAN_MEMBERS'])) {
-                    message.channel.send("ERR0R: You can not unmute that user!");
+                    message.reply(`${user.tag} is too powerful!`);
                 } else {
                     let muteRole = message.guild.roles.cache.get('781140937627009044');
                     if(muteRole) {
                         user.roles.remove(muteRole);
-                        message.reply("The user was unmuted!");
+                        message.reply(`${message.author.tag} unmuted ${user.tag}!`);
                     } else {
-                        message.channel.send("ERR0R: The muteRole could not be found!");
+                        message.reply("the muteRole could not be found!");
                     }
                 }
             } else {
-                message.channel.send("ERR0R: User not found!");
+                message.reply("I could not find this user!");
             }
         };
     }

@@ -6,7 +6,7 @@ module.exports = {
     category: 'music',
     async execute (message, args) {
         const serverQueue = message.client.queue.get(message.guild.id);
-        if(!serverQueue) return message.channel.send("ERR0R: There\'s nothing playing!").catch(console.error);
+        if(!serverQueue) return message.reply("there\'s nothing playing!").catch(console.error);
 
         songName = serverQueue.songs[0].title;
 
@@ -20,9 +20,9 @@ module.exports = {
 
         try{
             lyrics = await lyricsFinder(songName, "");
-            if(!lyrics) lyrics = `No lyrics found for ${songName}.`;}
+            if(!lyrics) lyrics = `I couldn't find any lyrics for ${songName}!`;}
             catch (error) {
-            lyrics = `ERR0R: No lyrics were found for ${songName}.`;};
+            lyrics = `I couldn't find any lyrics for ${songName}!`;};
 
         let lyricsEmbed = new Discord.MessageEmbed()
         .setTitle(`${songName} - Lyrics`)

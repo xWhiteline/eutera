@@ -11,7 +11,7 @@ module.exports = {
     description: 'This command displays the status of the bot!',
     execute (message, args) {
         message.channel.send('Eutera is using Discord.JS version: ' + `(\`${core_version}\`)` + ' & ytdl-core version: ' + `(\`${ytdl_version}\`)`);
-        message.channel.send('Eutera ' + `(\`${version}\`)` + ' build ' + `(\`${build}\`)` + ' runs on Heroku.');
+        message.channel.send('Eutera ' + `(\`${version}\`)` + ' build ' + `(\`${build}\`)` + ' runs on SomethingCP.');
         message.channel.send("This command was requested by " + `(\`${message.author.username}\`)`).catch(console.error);
     }
 };

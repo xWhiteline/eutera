@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const config = require("../core/config.json");
 
-const basic = '--meme, --pool'
+const basic = '--meme, --pool --patch'
 const admin = '--ban, --unban, --clear, --mute, --kick, --restart, --status'
 const music = '--join, --leave, --play, --pause, --resume, --stop, --lyrics, --now, --queue, --skip, --remove'
 

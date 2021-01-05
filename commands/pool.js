@@ -3,7 +3,7 @@ module.exports = {
     usage: '<question>',
     category: 'Entertainment',
     execute (message, args) {
-        if (!args[0]) {message.channel.send('ERR0R: Please ask a question!')};
+        if (!args[0]) {message.reply('please ask a question!')};
 
         let messageArgs = args.slice(0).join(" ");
 
