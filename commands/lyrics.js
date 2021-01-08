@@ -4,7 +4,7 @@ const lyricsFinder = require("lyrics-finder");
 module.exports = {
     name: 'lyrics',
     category: 'music',
-    async execute (message, args) {
+    async execute (message) {
         const serverQueue = message.client.queue.get(message.guild.id);
         if(!serverQueue) return message.reply("there\'s nothing playing!").catch(console.error);
 
@@ -14,7 +14,7 @@ module.exports = {
 
         songName = songName.replace(
             /([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g,
-            '');
+        '');
 
         let lyrics = null;
 

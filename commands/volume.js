@@ -1,3 +1,5 @@
+const config = require("../core/config.json");
+
 module.exports = {
     args: true,
     name: 'volume',
@@ -9,8 +11,8 @@ module.exports = {
         const serverQueue = message.client.queue.get(message.guild.id);
         if(!serverQueue) return message.reply("there is nothing playing!");
 
-        const volume = args[0] / 10;
-        serverQueue.connection.dispatcher.setVolume(volume);
+        config.volume = args[0];
+        serverQueue.connection.dispatcher.setVolume(config.volume / 100);
         message.channel.send(`${message.author}, I have set the volume to: ${args[0]}!`);
     }
 };

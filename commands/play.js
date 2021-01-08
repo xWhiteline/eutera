@@ -98,18 +98,25 @@ module.exports = {
             const connection = await voiceChannel.join();
             const dispatcher = connection.play(ytdl(song.url, {filter: "audioonly", quality: "highest", fmt: "mp3", highWaterMark: 1 << 25}))
                 .on('finish', () => {
-                    queue.songs.shift();
-                    play(queue.songs[0]);
+                    if(queue.loop) {
+                        let lastSong = queue.songs.shift();
+                        queue.songs.push(lastSong);
+                        play(queue.songs[0])
+                    } else {
+                        queue.songs.shift();
+                        play(queue.songs[0]);
+                    }
                 })
                 .on('error', error => {
                     repeated = repeated || 0;
                     if (repeated === 4) {
                         client.commands.get('skip').execute(message, args);
-                    } else console.log(error);
+                    } else 
+                    console.log(error);
                     queue.songs.shift();
                 });
                         
-            dispatcher.setVolumeLogarithmic(1 / 10);
+            dispatcher.setVolumeLogarithmic(config.volume / 100);
             message.channel.send(`Start playing **${song.title}**`);
         };
         
