@@ -3,10 +3,12 @@ const Discord = require("discord.js");
 
 module.exports = {
     name: 'now',
-    category: 'Music',
+    aliases: ['n'],
+    category: 'music',
     execute (message) {
         const serverQueue = message.client.queue.get(message.guild.id);
-        if(!serverQueue) return message.reply("there is nothing playing");
+            if(!serverQueue)
+                return message.reply("there is nothing playing");
 
         const song = serverQueue.songs[0];
         const seek = (serverQueue.connection.dispatcher.streamTime - serverQueue.connection.dispatcher.pausedTime) / 1000;
@@ -24,7 +26,7 @@ module.exports = {
                 (song.duration == 0 ? "LIVE" : new Date (song.duration * 1000).toISOString().substr(11,8)),
             false);
             now.setFooter("REMAINING: " + new Date(left * 1000).toISOString().substr(11, 8));
-        }
+        };
         return message.channel.send(now);
     }
 };

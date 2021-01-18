@@ -1,7 +1,6 @@
-const Discord = require('discord.js');
-
 module.exports = {
     name: 'kick',
+    aliases: ['k'],
     execute(message, args){
         if(message.member.permissions.has("KICK_MEMBERS")) {
             const user = message.mentions.members.first();
@@ -16,10 +15,10 @@ module.exports = {
                     message.reply(`successfully kicked ${user.tag}`);
                 } else {
                     message.reply(`the provided user is not a member of ${message.guild.name}!`)
-                } 
+                };
             } else {
                     message.reply('you have not provided a user!');
-            }
-        }
+            };
+        };
     }
-}
+};

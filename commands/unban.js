@@ -1,5 +1,4 @@
 module.exports = {
-    args: true,
     name: 'unban',
     execute(message, args){
         if(message.member.permissions.has("BAN_MEMBERS") || message.member.permissions.has("ADMINISTRATOR")) {
@@ -23,7 +22,7 @@ module.exports = {
                      });        
             } else {
                 message.reply('ERR0R: You have not provided a user!');
-            }
-        }
+            };
+        };
     }
-}
+};

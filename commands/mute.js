@@ -1,5 +1,3 @@
-const Discord = require('discord.js');
-
 module.exports = {
     name: 'mute',
     execute (message, args) {
@@ -18,11 +16,11 @@ module.exports = {
                         message.reply(`${message.author.tag} muted ${user.tag}!`);
                     } else {
                         message.reply("the muteRole could not be found!");
-                    }
-                }
+                    };
+                };
             } else {
                 message.reply("I could not find this user!");
-            }
+            };
         };
     }
 };

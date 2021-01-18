@@ -1,19 +1,19 @@
 const Discord = require('discord.js');
-const config = require("../core/config.json");
-
-const basic = '--meme, --pool, --ping, --patch'
-const admin = '--ban, --unban, --clear, --mute, --kick, --restart, --status'
-const music = '--join, --leave, --play, --pause, --resume, --stop, --lyrics, --now, --queue, --skip, --remove'
+const config = require('../core/config.json');
+const catalog = require('../core/catalog.json');
 
 module.exports = {
     name: 'help',
-    execute (message) {
+    aliasses: ['h'],
+    execute(message) {
         const embed = new Discord.MessageEmbed()
-            .setTitle('SEND FEEDBACK:')
+            .setTitle('COMMANDS:')
             .setColor(0xF1C40F)
-            .addField('Basic: ', basic)
-            .addField('Music:', music)
-            .addField('Management: ', admin)
-            message.channel.send(embed);
+            .addField('● MAIN: ', `${config.prefix}${catalog.meme}, ${config.prefix}${catalog.pool}, ${config.prefix}${catalog.ping}, ${config.prefix}${catalog.patch}, ${config.prefix}${catalog.status}`)
+            .addField('● MUSIC: ', `${config.prefix}${catalog.play}, ${config.prefix}${catalog.stop}, ${config.prefix}${catalog.pause}, ${config.prefix}${catalog.resume}, ${config.prefix}${catalog.skip}, 
+            ${config.prefix}${catalog.queue}, ${config.prefix}${catalog.remove}, ${config.prefix}${catalog.now}, ${config.prefix}${catalog.lyrics}`)
+            .addField('● ADMIN: ', `${config.prefix}${catalog.clear}, ${config.prefix}${catalog.mute}, ${config.prefix}${catalog.unmute}, ${config.prefix}${catalog.kick}, ${config.prefix}${catalog.ban}, 
+            ${config.prefix}${catalog.unban}`);
+            message.channel.send(embed).catch(console.error);
     }
-}
+};

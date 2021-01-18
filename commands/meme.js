@@ -3,8 +3,7 @@ const fetch = require('node-fetch');
 
 module.exports = {
     name: 'meme',
-    category: 'Entertainment',
-    execute (message, args) {
+    execute (message) {
         fetch('https://meme-api.herokuapp.com/gimme')
             .then(res => res.json())
             .then(json => {
@@ -13,6 +12,7 @@ module.exports = {
                     .setImage(json.url)
                     .setFooter(`Link: ${json.postLink} | Subreddit: ${json.subreddit}`)
                 message.channel.send(embed);
-            });
+            }
+        );
     }
 };

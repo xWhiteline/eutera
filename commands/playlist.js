@@ -38,7 +38,6 @@ module.exports = {
             connection: null,
             songs: [],
             loop: false,
-            volume: 5,
             playing: true
         };
 
@@ -99,7 +98,7 @@ module.exports = {
         if (playlistEmbed.description.length >= 2048)
         playlistEmbed.description = playlistEmbed.description.substr(0, 2007) + "\nPlaylist larger than character limit...";
 
-        message.channel.send(`${message.author} has started a playlist`, playlistEmbed);
+        message.channel.send(`\`${message.author.username}\` has started a playlist`, playlistEmbed);
 
         if (!serverQueue) {
             message.client.queue.set(message.guild.id, queueConstruct);
@@ -140,6 +139,6 @@ module.exports = {
             message.client.queue.delete(message.guild.id);
             await voiceChannel.leave();
             return message.reply(`I could not join the channel: ${error.message}`).catch(console.error);
-        }
+        };
     }
 }};

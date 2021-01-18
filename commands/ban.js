@@ -12,7 +12,7 @@ module.exports = {
                 message.reply(`${message.author.tag} banned ${user.tag} from ${message.guild.name}`);
             } else {
                 message.reply('a user has not been provided!');
-            }
-        }
+            };
+        };
     }
-}
+};

@@ -1,5 +1,3 @@
-const Discord = require('discord.js');
-
 module.exports = {
     name: 'unmute',
     execute (message, args) {
@@ -19,10 +17,10 @@ module.exports = {
                     } else {
                         message.reply("the muteRole could not be found!");
                     }
-                }
+                };
             } else {
                 message.reply("I could not find this user!");
-            }
+            };
         };
     }
 };

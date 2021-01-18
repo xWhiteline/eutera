@@ -1,15 +1,21 @@
+const Discord = require('discord.js');
 const config = require('../core/config.json');
-
-let version = config.version;
-let build = config.build;
 
 module.exports = {
     name: 'patch',
     category: 'Debug',
     description: 'This command displays the most recent patch of the bot!',
-    execute (message, args) {
-        message.channel.send("Eutera has been updated to version:" + " " + `(\`${version}\`)` + " " + "build:" + " " + `(\`${build}\`)` + "!")
-        message.channel.send("This patch added the loop command for Eutera!")
-        message.channel.send("This command was requested by " + `(\`${message.author.username}\`)`).catch(console.error);
+    execute (message) {
+        const author = message.author.username;
+
+        const embed = new Discord.MessageEmbed()
+            .setColor('RANDOM')
+            .setTitle('EUTERA: 2.3.0 PATCH')
+            .setDescription('PATCH NOTES:')
+            .addField('● Fixed the play command.', 'Just that.')
+            .addField('● Changed some args in the play command.', 'Should sound the same or better.')
+            .addField('● Getting ready to re-work some commands.', 'Dev stuff, don\'t worry about it!')
+            .setTimestamp();
+            message.channel.send(embed).catch(console.error);
     }
 };

@@ -1,18 +1,15 @@
 /* Core */
-const config = require("./core/config.json");
+const config = require('./core/config.json');
 
-/* Important */
-const { Collection } = require('discord.js');
+/* Required */
+const { Collection, Message } = require('discord.js');
 const { readdirSync } = require('fs');
 const { join } = require('path');
 
 /* Client */
-const eutera_client = require('./Client');
-const client = new eutera_client();
-
-// Retrieve the version and build of the bot!
-let version = config.version;
-let build = config.build;
+const dclient = require('./core/Client');
+const client = new dclient();
+client.options.http.api = "https://discord.com/api"
 
 const commandFiles = readdirSync(join(__dirname, 'commands')).filter(file => file.endsWith('.js'));
 for (const file of commandFiles) {
@@ -21,8 +18,8 @@ for (const file of commandFiles) {
 };
 
 client.once('ready', async () => {
-    console.log('Eutera ' + config.build + " " + config.version + " is now online!");
-    client.user.setActivity(config.activity, {type: 'LISTENING'}).catch(console.error);
+    console.log('Eutera ' + 'build: ' + config.build + " " + 'version: ' + config.version + " " + "is now online and running on SomethingCP!");
+    client.user.setActivity(`${config.prefix}help`, {type: 'LISTENING'}).catch(console.error);
 });
 
 client.on('message', message => {
@@ -38,7 +35,7 @@ client.on('message', message => {
         return;
 
     if (command.args && !args.length) {
-        let reply = `You didn't provide any arguments, ${message.author}!`;
+        let reply = `${message.author}, you did not provide any arguments!`;
         if (command.usage) reply += `\nThe proper usage would be: \`${config.prefix}${command.name} ${command.usage}\``;
         return message.channel.send(reply);
     };
@@ -47,7 +44,8 @@ client.on('message', message => {
 		command.execute(message, args);
 	} catch (error) {
 		console.error(error);
-		message.reply('there was an error trying to execute that command!')};
+		message.reply('there was an error trying to execute that command!')
+    };
 });
 
 /* Login the bot */

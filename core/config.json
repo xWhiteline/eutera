@@ -1,18 +1,17 @@
 {
-    "activity": "--help",
-    "prefix": "--",
+    "activity": "-help",
+    "prefix": "-",
 
-    "build": "162_21H1",
-    "version": "1.6.2",
+    "version": "2.3.0",
+    "build": "230_21H1",
+
     "core_version": "12.5.1",
-    "ytdl_version": "4.2.1",
-    "dev_feedback": "https://xwhiteline.github.io/pages/feedback.html",
+    "ytdl_version": "4.4.1",
+
+    "volume": 50,
+    "MAX_PLAYLIST_SIZE": 100,
 
     "token": "",
     "GOOGLE_API_KEY": "",
-    "SOUNDCLOUD_CLIENT_ID": "",
-
-    "volume": 50,
-
-    "MAX_PLAYLIST_SIZE": 100
+    "SOUNDCLOUD_CLIENT_ID": ""
 }
